@@ -22,7 +22,12 @@ describe('Item', () => {
     component = renderer.create(
       <Item item = {item} onRemoveItem={handleRemoveItem}/>
     );
-  })
+  });
+
+  test('renders snapshot', () => {
+    let tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
+  });
 
   it('renders all properties', () => {
     expect(component.root.findByType('a').props.href).toEqual( 'https://reactjs.org/'); 
