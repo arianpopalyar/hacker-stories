@@ -13,7 +13,7 @@
   font-weight: 300;
   letter-spacing: 2px;
 }
-.titleRow{
+.titleRow {
   font-weight: bold;
   display: flex;
 }
@@ -34,7 +34,9 @@
 .item > span > a {
   color: inherit;
 }
-
+.pngStyle{
+  width: 10px;
+}
 .button {
   background: transparent;
   border: 1px solid #171212;
