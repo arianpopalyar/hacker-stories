@@ -5,9 +5,9 @@ import downArrow from './img/download.png';
 import upload from './img/upload.png';
 import { sortBy } from 'lodash';
 
-const Download = () => <img src={downArrow} class="pngStyle" />
-// eslint-disable-next-line jsx-a11y/alt-text
-const UpArrow = () => <img src={upload} class="pngStyle" />
+const Download = () => <img src={downArrow} className="pngStyle" alt="down arrow" />
+
+const UpArrow = () => <img src={upload} className="pngStyle" alt="up arrow" />
 
 const SORTS = {
     NONE: list => list,
@@ -32,7 +32,7 @@ const List = ({ list, onRemoveItem }) => {
 
     return(
     <div>
-        <div style={{display: 'flex'}} class="titleRow">
+        <div style={{display: 'flex'}} className="titleRow">
             <span style={{width: '40%'}}>
                 <button type="button" onClick={() => handleSort('TITLE')}>
                 Title {sort.isReverse?<Download/>:<UpArrow/>}      
