@@ -7,6 +7,8 @@ import List from './List';
 
 const API_ENDPOINT = 'https://hn.algolia.com/api/v1/search?query=';
 
+const getUrl = searchTerm => `${API_ENDPOINT}${searchTerm}`;
+
 const extractSearchTerm = url => url.replace(API_ENDPOINT, '');
 
 const getLastSearches = urls =>
@@ -20,7 +22,7 @@ urls
 
     const previousSearchTerm = result[result.length - 1];
 
-    if(searchTerm === previousSearchTerm){
+    if (searchTerm === previousSearchTerm) {
       return result;
     } else {
       return result.concat(searchTerm);
@@ -80,12 +82,12 @@ const App = () => {
     'search',
     'React'
   );
-  const getUrl = searchTerm => `${API_ENDPOINT}${searchTerm}`
 
   const [urls, setUrls] = React.useState([getUrl(searchTerm)]);
 
   const handleLastSearch = searchTerm => {
     setSearchTerm(searchTerm);
+    
     handleSearch(searchTerm);
   }
 
@@ -137,24 +139,33 @@ const App = () => {
 
     event.preventDefault();
   };
+  
+const LastSearches = ({ lastSearches, onLastSearch}) => (
+  <>
+  {lastSearches.map((searchTerm, index) =>(
+    <button
+      key={searchTerm + index}
+      type="button"
+      onClick={() => handleLastSearch(searchTerm)}>
+      {searchTerm}
+    </button>
+  ))}
+</>
+);
 
   return (
     <div className="container">
       <h1 className="headline-primary">My Hacker Stories</h1>
-
+      <LastSearches 
+      lastSearches={lastSearches} 
+      onLastSearch={handleLastSearch}
+      />
+     <hr/>
       <SearchForm
         searchTerm={searchTerm}
         onSearchInput={handleSearchInput}
         onSearchSubmit={handleSearchSubmit}
       />
-
-      {lastSearches.map(url =>(
-        <button
-        key={searchTerm}
-        type="button"
-        onClick={() => handleLastSearch(searchTerm)}
-        >{searchTerm}</button>
-      ))}
 
       {stories.isError && <p>Something went wrong ...</p>}
 

@@ -26,4 +26,6 @@ const SearchForm = ({
     </form>
   );
 
+  
+
 export default SearchForm;
